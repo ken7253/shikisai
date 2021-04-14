@@ -1,0 +1,24 @@
+{
+  "name": "shikisai",
+  "version": "0.0.0",
+  "description": "shikisai color management tool",
+  "keywords": ["color","typescript"],
+  "main": "/dist/index.js",
+  "scripts": {
+    "tsc:watch": "tsc -w",
+    "lint:ts": "eslint src",
+    "lint:tsFix": "eslint src --fix",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "ken7253 <ken7253@gmail.com> (https://dairoku-studio.com)",
+  "license": "MIT",
+  "engines": {
+    "node": "~14.16"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.24.0",
+    "typescript": "^4.2.4"
+  }
+}
