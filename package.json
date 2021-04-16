@@ -2,7 +2,10 @@
   "name": "shikisai",
   "version": "0.0.0",
   "description": "shikisai color management tool",
-  "keywords": ["color","typescript"],
+  "keywords": [
+    "color",
+    "typescript"
+  ],
   "main": "/dist/index.js",
   "scripts": {
     "tsc:watch": "tsc -w",
@@ -15,10 +18,18 @@
   "engines": {
     "node": "~14.16"
   },
+  "volta": {
+    "node": "14.16.0"
+  },
   "devDependencies": {
+    "@types/inquirer": "^7.3.1",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.24.0",
     "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "cac": "^6.7.2",
+    "inquirer": "^8.0.0"
   }
 }
