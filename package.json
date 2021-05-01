@@ -6,17 +6,14 @@
     "color",
     "typescript"
   ],
-  "type": "module",
   "main": "./dist/index.js",
   "scripts": {
-    "tsc:compile": "tsc",
+    "build": "npm-run-all gts:lint tsc:build",
+    "tsc:build": "tsc",
     "tsc:watch": "tsc -w",
     "gts:lint": "gts lint",
     "gts:clean": "gts clean",
     "gts:fix": "gts fix",
-    "prepare": "npm.cmd run compile",
-    "pretest": "npm.cmd run compile",
-    "posttest": "npm.cmd run lint",    
     "prepublishOnly": "npm run build"
   },
   "author": "ken7253 <ken7253@gmail.com> (https://dairoku-studio.com)",
@@ -34,10 +31,12 @@
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.24.0",
     "gts": "^3.1.0",
+    "npm-run-all": "^4.1.5",
     "typescript": "^4.0.3"
   },
   "dependencies": {
     "cac": "^6.7.2",
+    "color-convert": "^2.0.1",
     "inquirer": "^8.0.0"
   }
 }
