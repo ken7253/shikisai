@@ -9,17 +9,15 @@
   "type": "module",
   "main": "./dist/index.js",
   "scripts": {
+    "tsc:compile": "tsc",
     "tsc:watch": "tsc -w",
-    "lint:ts": "eslint src",
-    "lint:tsFix": "eslint src --fix",
-    "prepublishOnly": "npm run build",
-    "lint": "gts lint",
-    "clean": "gts clean",
-    "compile": "tsc",
-    "fix": "gts fix",
+    "gts:lint": "gts lint",
+    "gts:clean": "gts clean",
+    "gts:fix": "gts fix",
     "prepare": "npm.cmd run compile",
     "pretest": "npm.cmd run compile",
-    "posttest": "npm.cmd run lint"
+    "posttest": "npm.cmd run lint",    
+    "prepublishOnly": "npm run build"
   },
   "author": "ken7253 <ken7253@gmail.com> (https://dairoku-studio.com)",
   "license": "MIT",
