@@ -1,8 +1,10 @@
-import fs = require('fs');
+import * as fs from 'fs';
+
+import common from '../modules/globals';
 
 export default {
   init(name: string) {
-    const paletteTemplateDir = './static/json/colorpalette.config.json';
+    const paletteTemplateDir = `${common.jsonFiles}/colorpalette.config.json`;
     const settingTemplate = fs.readFileSync(paletteTemplateDir, {
       encoding: 'utf-8',
     });
