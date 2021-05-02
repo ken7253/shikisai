@@ -2,6 +2,7 @@ import cac from 'cac';
 const cli = cac();
 
 import cmd from './cmd/index';
+import common from './modules/globals';
 
 cli
   .command('init <name>', 'create new color-palette')
@@ -23,5 +24,5 @@ cli
   });
 
 cli.help();
-cli.version('0.0.0');
+cli.version(common.version);
 cli.parse();
