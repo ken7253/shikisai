@@ -1,10 +1,8 @@
 import fs = require('fs');
 
-const root = process.argv[1];
-
 export default {
   init(name: string) {
-    const paletteTemplateDir = `${root}/static/colorpalette.config.json`;
+    const paletteTemplateDir = './static/json/colorpalette.config.json';
     const settingTemplate = fs.readFileSync(paletteTemplateDir, {
       encoding: 'utf-8',
     });
