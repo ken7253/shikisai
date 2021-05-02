@@ -9,6 +9,7 @@ cli
   .alias('i')
   .action((name: string) => {
     cmd.init(name);
+    console.log(`create new color-palette ${name}`);
   });
 
 cli
