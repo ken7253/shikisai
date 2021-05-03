@@ -25,5 +25,5 @@ cli
   });
 
 cli.help();
-cli.version(common.version);
+cli.version(common.PACKAGE_VERSION);
 cli.parse();
