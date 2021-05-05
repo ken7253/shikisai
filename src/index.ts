@@ -3,15 +3,14 @@ const cli = cac();
 
 import cmd from './cmd/index';
 import common from './modules/globals';
+import Message from './modules/message';
 
 cli
   .command('init <name>', 'create new color-palette')
   .alias('i')
   .action((name: string) => {
     cmd.init(name);
-    console.log(
-      `\u001b[34m[COMPLETE!] create new color-palette ${name}\u001b[0m`
-    );
+    new Message('complete', `create new color-palette ${name}`);
   });
 
 cli

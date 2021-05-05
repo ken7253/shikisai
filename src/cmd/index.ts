@@ -2,7 +2,9 @@ import * as fs from 'fs';
 import * as convert from 'color-convert';
 import {HEX} from 'color-convert/conversions';
 
+// Local modules
 import common, {Palette, colorUnit} from '../modules/globals';
+import Message from '../modules/message';
 
 /**
  * カラーパレットの呼び出しと保存をする関数
@@ -50,11 +52,12 @@ export default {
       try {
         palette.color?.forEach(obj => {
           if (obj.name === colorName) {
-            throw `\u001b[31m"${colorName}" has already been used.\u001b[0m`;
+            throw new Error(JSON.stringify(obj));
           }
         });
       } catch (err) {
-        console.log(err);
+        new Message('log', `${err}`);
+        new Message('error', `"${colorName}" has already been used.`);
         return palette;
       }
       // colorNameの重複がない場合
@@ -69,7 +72,7 @@ export default {
         },
       };
       palette.color?.push(newColorUnit);
-      console.log(`\u001b[34m[COMPLETE!] add new color ${colorName}\u001b[0m`);
+      new Message('complete', `add new color "${colorName}"`);
       return palette;
     });
   },
@@ -79,6 +82,7 @@ export default {
       palette.color?.some((value, index) => {
         if (value.name === colorName) {
           palette.color?.splice(index, 1);
+          new Message('complete', `remove color at "${colorName}"`);
         }
       });
       return palette;
