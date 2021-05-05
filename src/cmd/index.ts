@@ -69,11 +69,19 @@ export default {
         },
       };
       palette.color.push(newColorUnit);
+      console.log(`\u001b[34m[COMPLETE!] add new color ${colorName}\u001b[0m`);
       return palette;
     });
   },
 
   remove(colorName: string) {
-    console.log(colorName);
+    editConfig((palette: Palette) => {
+      palette.color.some((value, index) => {
+        if (value.name === colorName) {
+          palette.color.splice(index, 1);
+        }
+      });
+      return palette;
+    });
   },
 };

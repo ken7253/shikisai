@@ -9,7 +9,9 @@ cli
   .alias('i')
   .action((name: string) => {
     cmd.init(name);
-    console.log(`create new color-palette ${name}`);
+    console.log(
+      `\u001b[34m[COMPLETE!] create new color-palette ${name}\u001b[0m`
+    );
   });
 
 cli
