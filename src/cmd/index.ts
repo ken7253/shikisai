@@ -59,20 +59,21 @@ export default {
             throw `"${colorName}" has already been used.`;
           }
         });
-      } catch (error) {
-        console.error(error);
+      } catch (err) {
+        console.log(err);
         return palette;
       }
       // colorNameの重複がない場合
+      const rgb = convert.hex.rgb(colorCode);
+      const hsl = convert.hex.hsl(colorCode);
       const newColorUnit: colorUnit = {
         name: colorName,
         data: {
           hex: colorCode,
-          rgb: [0, 0, 0],
-          hsl: [0, 0, 0],
+          rgb: rgb,
+          hsl: hsl,
         },
       };
-      console.log(newColorUnit);
       palette.color.push(newColorUnit);
       return palette;
     });
