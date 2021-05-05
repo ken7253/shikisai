@@ -1,26 +1,15 @@
 import * as fs from 'fs';
 import * as convert from 'color-convert';
+import {HEX} from 'color-convert/conversions';
 
-import common from '../modules/globals';
-import {HEX, HSL, RGB} from 'color-convert/conversions';
+import common, {Palette, colorUnit} from '../modules/globals';
 
-interface colorUnit {
-  name: string;
-  data: {
-    hex: HEX;
-    rgb: RGB;
-    hsl: HSL;
-  };
-}
-
-interface Palette {
-  name: string;
-  dist: string;
-  compileType: 'css' | 'scss';
-  color: colorUnit[];
-}
-
-const editConfig = (func: Function) => {
+/**
+ * カラーパレットの呼び出しと保存をする関数
+ * @param func 編集を行う関数
+ * @returns 編集後のパレットオブジェクト
+ */
+const editConfig = (func: Function): Palette => {
   const getPalette = fs.readFileSync(
     `${common.root}/colorpalette.config.json`,
     {
@@ -28,15 +17,20 @@ const editConfig = (func: Function) => {
     }
   );
   const palette: Palette = JSON.parse(getPalette);
-  const afterEditPalette = func(palette);
+  const afterEditPalette: Palette = func(palette);
 
   fs.writeFileSync(
     common.CONFIG_FILE_NAME,
     JSON.stringify(afterEditPalette, null, 2)
   );
+  return afterEditPalette;
 };
 
 export default {
+  /**
+   * プロジェクトを初期化する処理
+   * @param name プロジェクト名
+   */
   init(name: string) {
     const paletteTemplateDir = `${common.JSON_FILE_DIRECTORY}/colorpalette.config.json`;
     const settingTemplate = fs.readFileSync(paletteTemplateDir, {
@@ -56,7 +50,7 @@ export default {
       try {
         palette.color.forEach(obj => {
           if (obj.name === colorName) {
-            throw `"${colorName}" has already been used.`;
+            throw `\u001b[31m"${colorName}" has already been used.\u001b[0m`;
           }
         });
       } catch (err) {
