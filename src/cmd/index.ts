@@ -1,13 +1,15 @@
 import * as fs from 'fs';
+import * as convert from 'color-convert';
 
 import common from '../modules/globals';
+import {HEX, HSL, RGB} from 'color-convert/conversions';
 
 interface colorUnit {
   name: string;
   data: {
-    hex: string;
-    rgb: [number, number, number];
-    hls: [number, number, number];
+    hex: HEX;
+    rgb: RGB;
+    hsl: HSL;
   };
 }
 
@@ -48,17 +50,18 @@ export default {
     );
   },
 
-  add(colorName: string, colorCode: string) {
+  add(colorName: string, colorCode: HEX) {
     editConfig((palette: Palette) => {
       // 既にcolorNameと同じ名前が使用されていないか確認
       try {
         palette.color.forEach(obj => {
           if (obj.name === colorName) {
-            throw `${colorName} has already been used.`;
+            throw `"${colorName}" has already been used.`;
           }
         });
       } catch (error) {
         console.error(error);
+        return palette;
       }
       // colorNameの重複がない場合
       const newColorUnit: colorUnit = {
@@ -66,9 +69,10 @@ export default {
         data: {
           hex: colorCode,
           rgb: [0, 0, 0],
-          hls: [0, 0, 0],
+          hsl: [0, 0, 0],
         },
       };
+      console.log(newColorUnit);
       palette.color.push(newColorUnit);
       return palette;
     });
