@@ -22,6 +22,7 @@ cli
 
 cli
   .command('remove <colorName>', 'remove color on color-palette')
+  .alias('rm')
   .action((colorName: string) => {
     cmd.remove(colorName);
   });
