@@ -19,7 +19,7 @@ export interface Palette {
   name: string;
   dist: string;
   compileType: 'css' | 'scss';
-  color: colorUnit[];
+  color?: colorUnit[];
 }
 
 export default {

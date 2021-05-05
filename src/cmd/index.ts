@@ -48,7 +48,7 @@ export default {
     editConfig((palette: Palette) => {
       // 既にcolorNameと同じ名前が使用されていないか確認
       try {
-        palette.color.forEach(obj => {
+        palette.color?.forEach(obj => {
           if (obj.name === colorName) {
             throw `\u001b[31m"${colorName}" has already been used.\u001b[0m`;
           }
@@ -68,7 +68,7 @@ export default {
           hsl: hsl,
         },
       };
-      palette.color.push(newColorUnit);
+      palette.color?.push(newColorUnit);
       console.log(`\u001b[34m[COMPLETE!] add new color ${colorName}\u001b[0m`);
       return palette;
     });
@@ -76,9 +76,9 @@ export default {
 
   remove(colorName: string) {
     editConfig((palette: Palette) => {
-      palette.color.some((value, index) => {
+      palette.color?.some((value, index) => {
         if (value.name === colorName) {
-          palette.color.splice(index, 1);
+          palette.color?.splice(index, 1);
         }
       });
       return palette;
