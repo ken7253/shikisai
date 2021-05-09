@@ -6,6 +6,10 @@ import {HEX} from 'color-convert/conversions';
 import common, {Palette, colorUnit} from '../modules/globals';
 import Message from '../modules/message';
 
+/**
+ * カラーパレットの情報を取り出す処理
+ * @returns カラーパレット
+ */
 const getPalette = (): Palette => {
   const readFile = fs.readFileSync(`${common.root}/colorpalette.config.json`, {
     encoding: 'utf-8',
