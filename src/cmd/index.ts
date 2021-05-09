@@ -6,20 +6,22 @@ import {HEX} from 'color-convert/conversions';
 import common, {Palette, colorUnit} from '../modules/globals';
 import Message from '../modules/message';
 
+const getPalette = (): Palette => {
+  const readFile = fs.readFileSync(`${common.root}/colorpalette.config.json`, {
+    encoding: 'utf-8',
+  });
+  const palette: Palette = JSON.parse(readFile);
+
+  return palette;
+};
+
 /**
  * カラーパレットの呼び出しと保存をする関数
  * @param func 編集を行う関数
  * @returns 編集後のパレットオブジェクト
  */
 const editConfig = (func: Function): Palette => {
-  const getPalette = fs.readFileSync(
-    `${common.root}/colorpalette.config.json`,
-    {
-      encoding: 'utf-8',
-    }
-  );
-  const palette: Palette = JSON.parse(getPalette);
-  const afterEditPalette: Palette = func(palette);
+  const afterEditPalette: Palette = func(getPalette());
 
   fs.writeFileSync(
     common.CONFIG_FILE_NAME,
