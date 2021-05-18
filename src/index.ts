@@ -25,7 +25,7 @@ cli
   .action((colorName: string) => {
     cmd.remove(colorName);
   });
-
+cli.command('build').action(() => {});
 cli.help();
 cli.version(common.PACKAGE_VERSION);
 cli.parse();

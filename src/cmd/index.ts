@@ -94,4 +94,25 @@ export default {
       return palette;
     });
   },
+
+  build() {
+    const palette = getPalette();
+    if (!palette.color) {
+      return new Message('error', 'No color declared yet.');
+    }
+    switch (palette.compileType) {
+      case 'css':
+        // cssへのコンパイル処理
+        break;
+      case 'scss':
+        // scssへのコンパイル処理
+        break;
+      default:
+        new Message(
+          'error',
+          `An unexpected "compileType" has been declared.\nat ${common.root}/colorpalette.config.json`
+        );
+        break;
+    }
+  },
 };
