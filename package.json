@@ -2,10 +2,12 @@
   "name": "shikisai",
   "version": "0.0.0",
   "description": "shikisai color management tool",
+  "license": "MIT",
   "keywords": [
     "color",
     "typescript"
   ],
+  "private": "true",
   "main": "./dist/index.js",
   "scripts": {
     "build": "npm-run-all gts:lint tsc:build",
@@ -17,9 +19,13 @@
     "prepublishOnly": "npm run build"
   },
   "author": "ken7253 <ken7253@gmail.com> (https://dairoku-studio.com)",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ken7253/shikisai"
+  },
   "engines": {
-    "node": "~14.16"
+    "node": "^14.16.0",
+    "vscode": "^1.22.0"
   },
   "volta": {
     "node": "14.16.0"
