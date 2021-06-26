@@ -28,9 +28,10 @@ export default function () {
   const convertCss = (data: colorUnit[]): cssRuleset => {
     const selector = ':root';
     const property = data.map(unit => {
-      `--c-${unit.name}: #${unit.data.hex};`;
+      return `--c-${unit.name}: #${unit.data.hex};`;
     });
-    return `${selector}{\n${property.join('\n')}\n}`;
+    console.log(property);
+    return `${selector} {${property.join(' ')}}`;
   };
 
   /**
@@ -40,7 +41,7 @@ export default function () {
    */
   const convertScss = (data: colorUnit[]): scssVariables => {
     const variables = data.map(unit => {
-      `$c-${unit.name}: #${unit.data.hex};`;
+      return `$c-${unit.name}: #${unit.data.hex};`;
     });
     return variables.join('\n');
   };
@@ -52,10 +53,18 @@ export default function () {
   } else {
     switch (palette.compileType) {
       case 'css':
+        fs.mkdir(distDir, {recursive: true}, err => {
+          if (err) throw err;
+        });
         fs.writeFileSync(distDir + 'color.css', convertCss(palette.color));
+        new Message('complete', `build complete at ${distDir}color.css`);
         break;
       case 'scss':
+        fs.mkdir(distDir, {recursive: true}, err => {
+          if (err) throw err;
+        });
         fs.writeFileSync(distDir + '_color.scss', convertScss(palette.color));
+        new Message('complete', `build complete at ${distDir}_color.scss`);
         break;
       default:
         new Message(
