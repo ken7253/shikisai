@@ -30,7 +30,6 @@ export default function () {
     const property = data.map(unit => {
       return `--c-${unit.name}: #${unit.data.hex};`;
     });
-    console.log(property);
     return `${selector} {${property.join(' ')}}`;
   };
 
