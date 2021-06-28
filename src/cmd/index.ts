@@ -24,10 +24,10 @@ const getPalette = (): Palette => {
 
 /**
  * カラーパレットの呼び出しと保存をする関数
- * @param func 編集を行う関数
+ * @param func カラーパレットを処理するコールバック関数
  * @returns 編集後のパレットオブジェクト
  */
-const editConfig = (func: Function): Palette => {
+const editConfig = (func: (palette: Palette) => Palette): Palette => {
   const afterEditPalette: Palette = func(getPalette());
 
   fs.writeFileSync(
@@ -55,6 +55,11 @@ export default {
     );
   },
 
+  /**
+   * カラーパレットに色を追加する処理
+   * @param colorName 色の名前
+   * @param colorCode カラーコード
+   */
   add(colorName: string, colorCode: HEX) {
     editConfig((palette: Palette) => {
       // 既にcolorNameと同じ名前が使用されていないか確認
@@ -86,6 +91,10 @@ export default {
     });
   },
 
+  /**
+   * カラーパレットから色を取り除く処理
+   * @param colorName 対象の色名
+   */
   remove(colorName: string) {
     editConfig((palette: Palette) => {
       palette.color?.some((value, index) => {
@@ -97,5 +106,9 @@ export default {
       return palette;
     });
   },
+
+  /**
+   * カラーパレットをコンパイルする処理
+   */
   build,
 };
