@@ -14,7 +14,7 @@ cli
   });
 
 cli
-  .command('add <colorName> <colorCode>', 'add new color to color-palette')
+  .command('add <colorName> <colorCode>', 'add new color on color-palette')
   .action((colorName: string, colorCode: string) => {
     cmd.add(colorName, colorCode);
   });
