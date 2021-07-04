@@ -7,17 +7,23 @@
 ### init
 
 ```npm
-  shikisai --init
+  shikisai init <project-name>
 ```
 
 ### add
 
 ```npm
-  shikisai --add --color-name
+  shikisai add <color-name>
 ```
 
 ### remove
 
 ```npm
-  shikisai --remove --color-name
+  shikisai remove <color-name>
+```
+
+### version
+
+```npm
+  shikisai --version
 ```
