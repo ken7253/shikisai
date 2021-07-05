@@ -1,11 +1,7 @@
+// node
 import * as path from 'path';
+// color-convert types
 import {HEX, HSL, RGB} from 'color-convert/conversions';
-
-const root = process.argv[1];
-const JSON_FILE_DIRECTORY = path.join('static', 'json'); //'./static/json';
-const CONFIG_FILE_NAME = 'colorpalette.config.json';
-
-const PACKAGE_VERSION = '0.0.0';
 
 export interface colorUnit {
   name: string;
@@ -24,8 +20,8 @@ export interface Palette {
 }
 
 export default {
-  root: root,
-  JSON_FILE_DIRECTORY: JSON_FILE_DIRECTORY,
-  CONFIG_FILE_NAME: CONFIG_FILE_NAME,
-  PACKAGE_VERSION: PACKAGE_VERSION,
+  root: process.argv[1],
+  JSON_FILE_DIRECTORY: path.join('static', 'json'),
+  CONFIG_FILE_NAME: 'colorpalette.config.json',
+  PACKAGE_VERSION: '0.0.0',
 };
