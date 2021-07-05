@@ -1,4 +1,8 @@
+// node
 import * as fs from 'fs';
+import * as path from 'path';
+
+// color-convert
 import * as convert from 'color-convert';
 import {HEX} from 'color-convert/conversions';
 
@@ -14,9 +18,12 @@ import build from './build';
  * @returns カラーパレット
  */
 const getPalette = (): Palette => {
-  const readFile = fs.readFileSync(`${common.root}/colorpalette.config.json`, {
-    encoding: 'utf-8',
-  });
+  const readFile = fs.readFileSync(
+    path.join(common.root, common.CONFIG_FILE_NAME),
+    {
+      encoding: 'utf-8',
+    }
+  );
   const palette: Palette = JSON.parse(readFile);
 
   return palette;
@@ -43,7 +50,10 @@ export default {
    * @param name プロジェクト名
    */
   init(name: string) {
-    const paletteTemplateDir = `${common.JSON_FILE_DIRECTORY}/colorpalette.config.json`;
+    const paletteTemplateDir = path.join(
+      common.JSON_FILE_DIRECTORY,
+      common.CONFIG_FILE_NAME
+    );
     const settingTemplate = fs.readFileSync(paletteTemplateDir, {
       encoding: 'utf-8',
     });

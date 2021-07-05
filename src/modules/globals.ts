@@ -1,7 +1,8 @@
+import * as path from 'path';
 import {HEX, HSL, RGB} from 'color-convert/conversions';
 
 const root = process.argv[1];
-const JSON_FILE_DIRECTORY = './static/json';
+const JSON_FILE_DIRECTORY = path.join('static', 'json'); //'./static/json';
 const CONFIG_FILE_NAME = 'colorpalette.config.json';
 
 const PACKAGE_VERSION = '0.0.0';
