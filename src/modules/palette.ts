@@ -31,6 +31,7 @@ export default class Shikisai {
     this.palette = this.read();
   }
   read() {
+    new Message('running', 'loading colorPalette');
     const readFile = fs.readFileSync(
       path.join(common.root, common.CONFIG_FILE_NAME),
       {encoding: 'utf-8'}
