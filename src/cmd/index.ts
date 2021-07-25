@@ -29,7 +29,11 @@ const getPalette = (): Palette => {
   return palette;
 };
 
-const checkColorCode = (hex: HEX) => {
+/**
+ * @param {HEX} hex 評価するカラーコード入力値
+ * @returns {boolean} カラーコードを評価した真偽値
+ */
+const checkColorCode = (hex: HEX): boolean => {
   const regx = /([0-9|a-f]{3}){1,2}/iu;
   return regx.test(hex);
 };
