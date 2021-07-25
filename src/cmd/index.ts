@@ -92,14 +92,17 @@ export default {
     editConfig((palette: Palette) => {
       // 既にcolorNameと同じ名前が使用されていないか確認
       try {
-        palette.color?.forEach(obj => {
-          if (obj.name === colorName) {
-            throw new Error(JSON.stringify(obj));
-          }
-        });
+        if (checkColorCode(colorCode)) {
+          palette.color?.forEach(obj => {
+            if (obj.name === colorName) {
+              throw new Error(`"${colorName}" has already been used.`);
+            }
+          });
+        } else {
+          throw new Error(`Invalid input value for color-code("${colorCode}")`);
+        }
       } catch (err) {
-        new Message('log', `${err}`);
-        new Message('error', `"${colorName}" has already been used.`);
+        new Message('error', `${err}`);
         return palette;
       }
       // colorNameの重複がない場合
