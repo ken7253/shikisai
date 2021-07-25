@@ -120,12 +120,12 @@ export default {
    */
   remove(colorName: string) {
     editConfig((palette: Palette) => {
-      palette.color?.some((value, index) => {
-        if (value.name === colorName) {
-          palette.color?.splice(index, 1);
-          new Message('complete', `remove color at "${colorName}"`);
-        }
-      });
+      if (palette.color?.some(val => val.name === colorName)) {
+        palette.color = palette.color?.filter(val => val.name !== colorName);
+        new Message('complete', `remove color at "${colorName}"`);
+      } else {
+        new Message('error', `"${colorName}" is not found`);
+      }
       return palette;
     });
   },
