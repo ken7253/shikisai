@@ -29,6 +29,11 @@ const getPalette = (): Palette => {
   return palette;
 };
 
+const checkColorCode = (hex: HEX) => {
+  const regx = /([0-9|a-f]{3}){1,2}/iu;
+  return regx.test(hex);
+};
+
 /**
  * カラーパレットの呼び出しと保存をする関数
  * @param func カラーパレットを処理するコールバック関数
