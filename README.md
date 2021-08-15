@@ -11,6 +11,8 @@
 "shikisai" is a package for centralized management of color information in front-end development.  
 We have created this package to be able to handle colors in a way that meets the high demands of designers while not compromising the maintainability of the project.
 
+Resources [for Japanese](/README_JP.md)
+
 ## How to use
 
 ### Install
