@@ -58,6 +58,7 @@ export default function () {
   } else if (palette.dist) {
     switch (palette.compileType) {
       case 'css':
+        // cssの場合の処理
         fs.mkdir(distDir, {recursive: true}, err => {
           if (err) throw err;
         });
@@ -68,6 +69,7 @@ export default function () {
         new Message('complete', `build complete at ${distDir}color.css`);
         break;
       case 'scss':
+        // scssの場合の処理
         fs.mkdir(distDir, {recursive: true}, err => {
           if (err) throw err;
         });
