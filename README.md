@@ -45,7 +45,8 @@ Use the `build` command to update it.
 
 ### build css(scss) file
 
-Please specify the export format in the configuration file before building the file.  
+Before building the file, please specify the export format in the configuration file.  
+If this is not done, an error will occur at compile time.
 
 ```jsonc
 // colorpalette.config.json
@@ -65,6 +66,8 @@ Please specify the export format in the configuration file before building the f
 ```npm
 npm run shikisai build
 ```
+
+Execute the `build` command to generate and update css files.
 
 ## Commands
 

@@ -44,7 +44,8 @@ npm run shikisai add <color-name> <color-code>
 
 ### build css(scss) file
 
-ファイルのビルドを行う前に設定ファイルにて書き出し形式の指定を行ってください。  
+ファイルのビルドを行う前に設定ファイルに書き出し形式の指定を行ってください。  
+この記述を行わない場合コンパイル時にエラーが発生します。
 
 ```jsonc
 // colorpalette.config.json
@@ -64,6 +65,8 @@ npm run shikisai add <color-name> <color-code>
 ```npm
 npm run shikisai build
 ```
+
+`build`コマンドを実行することによりcssのファイル生成及び更新が行われます。
 
 ## Commands
 
