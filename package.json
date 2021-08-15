@@ -1,7 +1,7 @@
 {
   "name": "shikisai",
   "version": "0.0.0",
-  "description": "shikisai color management tool",
+  "description": "shikisai color-unit management tool",
   "license": "MIT",
   "keywords": [
     "color",
