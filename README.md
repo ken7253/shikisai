@@ -47,7 +47,7 @@ Use the `build` command to update it.
 
 Please specify the export format in the configuration file before building the file.  
 
-```json
+```jsonc
 // colorpalette.config.json
 {
   "projectName": "example",

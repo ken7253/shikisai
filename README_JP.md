@@ -46,7 +46,7 @@ npm run shikisai add <color-name> <color-code>
 
 ファイルのビルドを行う前に設定ファイルにて書き出し形式の指定を行ってください。  
 
-```json
+```jsonc
 // colorpalette.config.json
 {
   "projectName": "example",
