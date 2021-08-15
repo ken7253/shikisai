@@ -55,7 +55,7 @@ export default function () {
   const distDir = palette.dist;
   if (!palette.color) {
     new Message('error', 'No color declared yet.');
-  } else {
+  } else if (palette.dist) {
     switch (palette.compileType) {
       case 'css':
         fs.mkdir(distDir, {recursive: true}, err => {
@@ -77,9 +77,20 @@ export default function () {
       default:
         new Message(
           'error',
-          `An unexpected "compileType" has been declared.\nat ${common.root}/colorpalette.config.json`
+          `An unexpected "compileType" has been declared.\nat ${path.join(
+            common.root,
+            common.CONFIG_FILE_NAME
+          )}`
         );
         break;
     }
+  } else {
+    new Message(
+      'error',
+      `"dist" is not specified.\nat ${path.join(
+        common.root,
+        common.CONFIG_FILE_NAME
+      )}`
+    );
   }
 }
