@@ -33,18 +33,18 @@
   },
   "devDependencies": {
     "@types/color-convert": "^2.0.0",
-    "@types/inquirer": "^7.3.1",
-    "@types/node": "^14.11.2",
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
-    "eslint": "^7.24.0",
+    "@types/inquirer": "^7.3.3",
+    "@types/node": "^14.17.9",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "eslint": "^7.32.0",
     "gts": "^3.1.0",
     "npm-run-all": "^4.1.5",
-    "typescript": "^4.0.3"
+    "typescript": "^4.3.5"
   },
   "dependencies": {
-    "cac": "^6.7.2",
+    "cac": "^6.7.3",
     "color-convert": "^2.0.1",
-    "inquirer": "^8.0.0"
+    "inquirer": "^8.1.2"
   }
 }
