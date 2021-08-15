@@ -55,4 +55,4 @@ npm run shikisai build
 
 ### Licence
 
-[MIT](/LICENCE)
+[MIT](/LICENSE)
