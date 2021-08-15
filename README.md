@@ -71,6 +71,47 @@ npm run shikisai build
 
 Execute the `build` command to generate and update css files.
 
+### After the build
+
+In this section, we will discuss the case of using a declared color as shown below.
+
+```npm
+npm run shikisai add example-color #f00
+```
+
+#### If you output as "css"
+
+For css output, colors are available as css variables.  
+Variable names will be prefixed with `c-`. It is followed by the color name specified by the `add` command.  
+
+When to use
+
+```css
+p {
+  color: var(--c-example-color);
+}
+```
+
+#### If you output as "scss"
+
+When outputting as scss, variables will be declared in scss format.  
+Variable names will be prefixed with `c-`. It is followed by the color name specified by the `add` command.  
+
+When to use
+
+```scss
+@use "./_color.scss" as color;
+
+p {
+  color: color.$--c-example-color;
+}
+```
+
+#### Notes on handling post-build files
+
+- Do not add any code to the file `_color.css(scss)` after the build because it will be rebuilt every time you build it.
+- The built file will be output in UTF-8.
+
 ## Commands
 
 | name   | alias | full command                                     | description                                        |
