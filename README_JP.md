@@ -6,7 +6,7 @@
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ken7253/shikisai/CodeQL?style=flat-square)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ken7253/shikisai?style=flat-square)
 
-## Introduction
+## はじめに
 
 「shikisai」は、フロントエンド開発における色情報の管理を行うためのためのパッケージです。  
 このパッケージは、デザイナーの高い要求に応えつつ、プロジェクトの保守性を損なわないように色を扱えるように作成しています。
@@ -21,7 +21,7 @@
 npm i shikisai
 ```
 
-### Initialize project
+### 管理を開始する
 
 ```npm
 npm run shikisai init <project-name>
@@ -30,7 +30,7 @@ npm run shikisai init <project-name>
 上記のコマンドで初期化を行うことによりプロジェクトルートに設定ファイルが生成されます。  
 管理する色を追加する場合は`add`コマンドを使用してください。
 
-### Add new color
+### 色を追加する
 
 ```npm
 npm run shikisai add <color-name> <color-code>
@@ -42,7 +42,7 @@ npm run shikisai add <color-name> <color-code>
 `add`コマンドにより管理ファイルに色情報を追加できます。  
 この状態では管理ファイルへの追加のみでcss(scss)ファイルの変更は行われません、更新を行う場合は`build`コマンドを使用してください。
 
-### build css(scss) file
+### ビルド方法について
 
 ファイルのビルドを行う前に設定ファイルに書き出し形式の指定を行ってください。  
 この記述を行わない場合コンパイル時にエラーが発生します。
@@ -68,7 +68,9 @@ npm run shikisai build
 
 `build`コマンドを実行することによりcssのファイル生成及び更新が行われます。
 
-## Commands
+### ビルド後の使用方法
+
+## コマンド一覧
 
 | コマンド名 | エイリアス | コマンド例                                       | 説明                                                 |
 | ---------- | ---------- | :----------------------------------------------- | :--------------------------------------------------- |
@@ -77,6 +79,6 @@ npm run shikisai build
 | remove     | rm         | `npm run shikisai remove <color-name>`           | プロジェクトから色を削除します                       |
 | build      | -          | `npm run shikisai build`                         | CSSもしくはScssの変数として色を出力します            |
 
-### Licence
+### ライセンス
 
 [MIT](/LICENSE)
