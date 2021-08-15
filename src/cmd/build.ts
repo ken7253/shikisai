@@ -1,5 +1,8 @@
+// node
 import * as fs from 'fs';
+import * as path from 'path';
 
+// local
 import common, {colorUnit, Palette} from '../modules/globals';
 import Message from '../modules/message';
 
@@ -8,9 +11,12 @@ import Message from '../modules/message';
  * @returns カラーパレット
  */
 const getPalette = (): Palette => {
-  const readFile = fs.readFileSync(`${common.root}/colorpalette.config.json`, {
-    encoding: 'utf-8',
-  });
+  const readFile = fs.readFileSync(
+    path.join(common.root, common.CONFIG_FILE_NAME),
+    {
+      encoding: 'utf-8',
+    }
+  );
   const palette: Palette = JSON.parse(readFile);
 
   return palette;
@@ -49,16 +55,21 @@ export default function () {
   const distDir = palette.dist;
   if (!palette.color) {
     new Message('error', 'No color declared yet.');
-  } else {
+  } else if (palette.dist) {
     switch (palette.compileType) {
       case 'css':
+        // cssの場合の処理
         fs.mkdir(distDir, {recursive: true}, err => {
           if (err) throw err;
         });
-        fs.writeFileSync(distDir + 'color.css', convertCss(palette.color));
+        fs.writeFileSync(
+          path.join(distDir, 'color.css'),
+          convertCss(palette.color)
+        );
         new Message('complete', `build complete at ${distDir}color.css`);
         break;
       case 'scss':
+        // scssの場合の処理
         fs.mkdir(distDir, {recursive: true}, err => {
           if (err) throw err;
         });
@@ -68,9 +79,20 @@ export default function () {
       default:
         new Message(
           'error',
-          `An unexpected "compileType" has been declared.\nat ${common.root}/colorpalette.config.json`
+          `An unexpected "compileType" has been declared.\nat ${path.join(
+            common.root,
+            common.CONFIG_FILE_NAME
+          )}`
         );
         break;
     }
+  } else {
+    new Message(
+      'error',
+      `"dist" is not specified.\nat ${path.join(
+        common.root,
+        common.CONFIG_FILE_NAME
+      )}`
+    );
   }
 }

@@ -1,4 +1,8 @@
+// node
 import * as fs from 'fs';
+import * as path from 'path';
+
+// color-convert
 import * as convert from 'color-convert';
 import {HEX} from 'color-convert/conversions';
 
@@ -14,12 +18,25 @@ import build from './build';
  * @returns カラーパレット
  */
 const getPalette = (): Palette => {
-  const readFile = fs.readFileSync(`${common.root}/colorpalette.config.json`, {
-    encoding: 'utf-8',
-  });
+  const readFile = fs.readFileSync(
+    path.join(common.root, common.CONFIG_FILE_NAME),
+    {
+      encoding: 'utf-8',
+    }
+  );
   const palette: Palette = JSON.parse(readFile);
 
   return palette;
+};
+
+/**
+ * 入力された値がカラーコードとして有効か判定する関数
+ * @param {HEX} hex 評価するカラーコード入力値
+ * @returns {boolean} カラーコードを評価した真偽値
+ */
+const checkColorCode = (hex: HEX): boolean => {
+  const regx = /([0-9|a-f]{3}){1,2}/iu;
+  return regx.test(hex);
 };
 
 /**
@@ -43,16 +60,32 @@ export default {
    * @param name プロジェクト名
    */
   init(name: string) {
-    const paletteTemplateDir = `${common.JSON_FILE_DIRECTORY}/colorpalette.config.json`;
-    const settingTemplate = fs.readFileSync(paletteTemplateDir, {
-      encoding: 'utf-8',
-    });
-    const settingJson = JSON.parse(settingTemplate);
-    settingJson.projectName = name;
-    fs.writeFileSync(
-      'colorpalette.config.json',
-      JSON.stringify(settingJson, null, 2)
-    );
+    if (fs.existsSync(path.join(common.root, common.CONFIG_FILE_NAME))) {
+      new Message('error', 'Project file has already been generated.');
+      new Message(
+        'log',
+        `config file here "${path.join(
+          common.root,
+          common.CONFIG_FILE_NAME
+        )}"\n`
+      );
+      return;
+    } else {
+      const paletteTemplateDir = path.join(
+        common.JSON_FILE_DIRECTORY,
+        common.CONFIG_FILE_NAME
+      );
+      const settingTemplate = fs.readFileSync(paletteTemplateDir, {
+        encoding: 'utf-8',
+      });
+      const settingJson = JSON.parse(settingTemplate);
+      settingJson.projectName = name;
+      fs.writeFileSync(
+        'colorpalette.config.json',
+        JSON.stringify(settingJson, null, 2)
+      );
+      return new Message('complete', `create new color-palette ${name}`);
+    }
   },
 
   /**
@@ -64,14 +97,17 @@ export default {
     editConfig((palette: Palette) => {
       // 既にcolorNameと同じ名前が使用されていないか確認
       try {
-        palette.color?.forEach(obj => {
-          if (obj.name === colorName) {
-            throw new Error(JSON.stringify(obj));
-          }
-        });
+        if (checkColorCode(colorCode)) {
+          palette.color?.forEach(obj => {
+            if (obj.name === colorName) {
+              throw new Error(`"${colorName}" has already been used.`);
+            }
+          });
+        } else {
+          throw new Error(`Invalid input value for color-code("${colorCode}")`);
+        }
       } catch (err) {
-        new Message('log', `${err}`);
-        new Message('error', `"${colorName}" has already been used.`);
+        new Message('error', `${err}`);
         return palette;
       }
       // colorNameの重複がない場合
@@ -97,12 +133,12 @@ export default {
    */
   remove(colorName: string) {
     editConfig((palette: Palette) => {
-      palette.color?.some((value, index) => {
-        if (value.name === colorName) {
-          palette.color?.splice(index, 1);
-          new Message('complete', `remove color at "${colorName}"`);
-        }
-      });
+      if (palette.color?.some(val => val.name === colorName)) {
+        palette.color = palette.color?.filter(val => val.name !== colorName);
+        new Message('complete', `remove color at "${colorName}"`);
+      } else {
+        new Message('error', `"${colorName}" is not found`);
+      }
       return palette;
     });
   },

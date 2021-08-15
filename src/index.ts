@@ -3,14 +3,12 @@ const cli = cac();
 
 import cmd from './cmd/index';
 import common from './modules/globals';
-import Message from './modules/message';
 
 cli
   .command('init <name>', 'create new color-palette')
   .alias('i')
   .action((name: string) => {
     cmd.init(name);
-    new Message('complete', `create new color-palette ${name}`);
   });
 
 cli
