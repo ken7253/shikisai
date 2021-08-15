@@ -28,6 +28,7 @@ npm run shikisai init <project-name>
 ```
 
 After the project initialization is complete, a configuration file will be created in the project root.
+Use the `add` command to add a color to be managed.
 
 ### Add new color
 
@@ -38,7 +39,28 @@ npm run shikisai add <color-name> <color-code>
 - "color-name" : should be specified in half-width alphanumeric characters.
 - "color-code" : must be specified in hexadecimal.(Abbreviations in 3-letter notation are also possible.)
 
+The `add` command can be used to add color information to the management file.
+In this state, only the addition of the file to the administration file is performed, and no changes are made to the css (scss) file.  
+Use the `build` command to update it.
+
 ### build css(scss) file
+
+Please specify the export format in the configuration file before building the file.  
+
+```json
+// colorpalette.config.json
+{
+  "projectName": "example",
+  "dist": "", // Required : File output destination after compilation
+  "compileType": "", // Required : Specify "css" or "scss"
+  "color": []
+}
+```
+
+| compileType | description                  |
+| ----------- | ---------------------------- |
+| css         | Output as a css variable     |
+| scss        | Output as a variable in scss |
 
 ```npm
 npm run shikisai build
@@ -46,12 +68,12 @@ npm run shikisai build
 
 ## Commands
 
-| name   | full command                                     | description                                        |
-| ------ | :----------------------------------------------- | :------------------------------------------------- |
-| init   | `npm run shikisai init <project-name>`           | Initialize the project and start managing shikisai |
-| add    | `npm run shikisai add <color-name> <color-code>` | Add a new color                                    |
-| remove | `npm run shikisai remove <color-name>`           | Remove color                                       |
-| build  | `npm run shikisai build`                         | Outputs a "css" or "scss" file.                    |
+| name   | alias | full command                                     | description                                        |
+| ------ | ----- | :----------------------------------------------- | :------------------------------------------------- |
+| init   | i     | `npm run shikisai init <project-name>`           | Initialize the project and start managing shikisai |
+| add    | -     | `npm run shikisai add <color-name> <color-code>` | Add a new color                                    |
+| remove | rm    | `npm run shikisai remove <color-name>`           | Remove color                                       |
+| build  | -     | `npm run shikisai build`                         | Outputs a "css" or "scss" file.                    |
 
 ### Licence
 
