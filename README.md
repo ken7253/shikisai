@@ -18,8 +18,6 @@ Resources [for Japanese](/README_JP.md)
 
 ### Install
 
-**The following commands are not available because we have not released the software yet.**
-
 ```shell
 npm i shikisai
 ```
