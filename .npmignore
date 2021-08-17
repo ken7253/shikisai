@@ -1,0 +1,15 @@
+# directory
+.github/
+.vscode/
+src/
+test/
+node_modules/
+
+# files
+colorpalette.config.json
+.eslintignore
+.eslintrc.json
+.gitattributes
+.gitignore
+.prettierignore
+.prettierrc.js
