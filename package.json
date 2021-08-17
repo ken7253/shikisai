@@ -19,6 +19,7 @@
     "gts:lint": "gts lint",
     "gts:clean": "gts clean",
     "gts:fix": "gts fix",
+    "test": "shikisai init test",
     "prepublishOnly": "npm run build"
   },
   "author": "ken7253 <ken7253@gmail.com> (https://dairoku-studio.com)",
