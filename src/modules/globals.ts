@@ -23,5 +23,5 @@ export default {
   root: process.argv[1],
   JSON_FILE_DIRECTORY: path.join('static', 'json'),
   CONFIG_FILE_NAME: 'colorpalette.config.json',
-  PACKAGE_VERSION: '0.1.1',
+  PACKAGE_VERSION: '0.1.2',
 };

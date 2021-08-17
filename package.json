@@ -9,7 +9,9 @@
     "scss"
   ],
   "private": false,
-  "main": "./dist/index.js",
+  "bin": {
+    "shikisai": "./dist/index.js"
+  },
   "scripts": {
     "build": "npm-run-all gts:lint tsc:build",
     "watch": "tsc -w",
