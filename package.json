@@ -13,7 +13,7 @@
     "shikisai": "./dist/index.js"
   },
   "scripts": {
-    "build": "npm-run-all gts:lint tsc:build",
+    "build": "run-p gts:lint tsc:build",
     "watch": "tsc -w",
     "tsc:build": "tsc",
     "gts:lint": "gts lint",
