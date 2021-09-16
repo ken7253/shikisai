@@ -60,18 +60,22 @@ export default {
    * @param name プロジェクト名
    */
   init(name: string) {
-    if (fs.existsSync(path.join(common.root, common.CONFIG_FILE_NAME))) {
+    if (
+      fs.existsSync(path.join(common.root, 'static', common.CONFIG_FILE_NAME))
+    ) {
       new Message('error', 'Project file has already been generated.');
       new Message(
         'log',
         `config file here "${path.join(
           common.root,
+          common.JSON_FILE_DIRECTORY,
           common.CONFIG_FILE_NAME
         )}"\n`
       );
       return;
     } else {
       const paletteTemplateDir = path.join(
+        common.root,
         common.JSON_FILE_DIRECTORY,
         common.CONFIG_FILE_NAME
       );

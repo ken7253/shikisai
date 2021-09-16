@@ -20,7 +20,7 @@ export interface Palette {
 }
 
 export default {
-  root: process.argv[1],
+  root: path.join(process.cwd(), 'node_modules', 'shikisai'),
   JSON_FILE_DIRECTORY: path.join('static', 'json'),
   CONFIG_FILE_NAME: 'colorpalette.config.json',
   PACKAGE_VERSION: '0.1.2',
