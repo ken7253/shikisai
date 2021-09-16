@@ -19,7 +19,7 @@ import build from './build';
  */
 const getPalette = (): Palette => {
   const readFile = fs.readFileSync(
-    path.join(common.root, common.CONFIG_FILE_NAME),
+    path.join(process.cwd(), common.CONFIG_FILE_NAME),
     {
       encoding: 'utf-8',
     }

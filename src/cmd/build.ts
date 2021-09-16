@@ -12,7 +12,7 @@ import Message from '../modules/message';
  */
 const getPalette = (): Palette => {
   const readFile = fs.readFileSync(
-    path.join(common.root, common.CONFIG_FILE_NAME),
+    path.join(process.cwd(), common.CONFIG_FILE_NAME),
     {
       encoding: 'utf-8',
     }
@@ -80,7 +80,7 @@ export default function () {
         new Message(
           'error',
           `An unexpected "compileType" has been declared.\nat ${path.join(
-            common.root,
+            process.cwd(),
             common.CONFIG_FILE_NAME
           )}`
         );
@@ -90,7 +90,7 @@ export default function () {
     new Message(
       'error',
       `"dist" is not specified.\nat ${path.join(
-        common.root,
+        process.cwd(),
         common.CONFIG_FILE_NAME
       )}`
     );
