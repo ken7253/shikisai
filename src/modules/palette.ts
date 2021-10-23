@@ -33,7 +33,7 @@ export default class Shikisai {
   read(): Palette {
     new Message('running', 'loading colorPalette');
     const readFile = fs.readFileSync(
-      path.join(common.root, common.CONFIG_FILE_NAME),
+      path.join(process.cwd(), common.CONFIG_FILE_NAME),
       {encoding: 'utf-8'}
     );
     this.palette = JSON.parse(readFile);
@@ -41,6 +41,10 @@ export default class Shikisai {
   }
   edit(func: (palette: Palette) => Palette): Palette {
     const afterEditPalette: Palette = func(this.read());
+    fs.writeFileSync(
+      path.join(process.cwd(), common.CONFIG_FILE_NAME),
+      JSON.stringify(afterEditPalette, null, 2)
+    );
     return afterEditPalette;
   }
 }
