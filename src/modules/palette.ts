@@ -26,11 +26,11 @@ export interface Palette {
 }
 
 export default class Shikisai {
-  palette: Palette;
+  private palette: Palette;
   constructor() {
     this.palette = this.read();
   }
-  read() {
+  read(): Palette {
     new Message('running', 'loading colorPalette');
     const readFile = fs.readFileSync(
       path.join(common.root, common.CONFIG_FILE_NAME),
@@ -39,7 +39,7 @@ export default class Shikisai {
     this.palette = JSON.parse(readFile);
     return this.palette;
   }
-  edit(func: (palette: Palette) => Palette) {
+  edit(func: (palette: Palette) => Palette): Palette {
     const afterEditPalette: Palette = func(this.read());
     return afterEditPalette;
   }

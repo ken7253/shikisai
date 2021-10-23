@@ -3,30 +3,17 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 // local
-import common, {Palette} from '../modules/globals';
 import Message from '../modules/message';
+import Shikisai from '../modules/palette';
 import Compiler from '../modules/Compiler';
-
-/**
- * カラーパレットの情報を取り出す処理
- * @returns カラーパレット
- */
-const getPalette = (): Palette => {
-  const readFile = fs.readFileSync(
-    path.join(process.cwd(), common.CONFIG_FILE_NAME),
-    {
-      encoding: 'utf-8',
-    }
-  );
-  const palette: Palette = JSON.parse(readFile);
-
-  return palette;
-};
+import common from '../modules/globals';
 
 export default function () {
+  const shikisai = new Shikisai();
   const compiler = new Compiler();
-  const palette = getPalette();
+  const palette = shikisai.read();
   const distDir = palette.dist;
+
   if (!palette.color) {
     new Message('error', 'No color declared yet.');
   } else if (palette.dist) {
