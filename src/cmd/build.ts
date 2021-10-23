@@ -4,7 +4,7 @@ import * as path from 'path';
 
 // local
 import Message from '../modules/message';
-import Shikisai from '../modules/palette';
+import Shikisai from '../modules/Palette';
 import Compiler from '../modules/Compiler';
 import common from '../modules/globals';
 

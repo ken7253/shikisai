@@ -1,6 +1,6 @@
 // modules
 import Message from '../modules/message';
-import Shikisai, {Palette, ColorUnit} from '../modules/palette';
+import Shikisai, {Palette, ColorUnit} from '../modules/Palette';
 import checkColorCode from '../modules/checkColorCode';
 import * as convert from 'color-convert';
 
