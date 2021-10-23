@@ -9,6 +9,7 @@
     "scss"
   ],
   "private": false,
+  "main": "./dist/index.js",
   "bin": {
     "shikisai": "./dist/index.js"
   },
