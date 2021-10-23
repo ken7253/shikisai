@@ -9,7 +9,7 @@ import common from './globals';
 // types
 import {HEX, HSL, RGB} from 'color-convert/conversions';
 
-interface colorUnit {
+export interface ColorUnit {
   name: string;
   data: {
     hex: HEX;
@@ -22,7 +22,7 @@ export interface Palette {
   name: string;
   dist: string;
   compileType: 'css' | 'scss';
-  color?: colorUnit[];
+  color?: ColorUnit[];
 }
 
 export default class Shikisai {

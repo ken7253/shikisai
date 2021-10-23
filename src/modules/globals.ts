@@ -1,23 +1,5 @@
 // node
 import * as path from 'path';
-// color-convert types
-import {HEX, HSL, RGB} from 'color-convert/conversions';
-
-export interface colorUnit {
-  name: string;
-  data: {
-    hex: HEX;
-    rgb: RGB;
-    hsl: HSL;
-  };
-}
-
-export interface Palette {
-  name: string;
-  dist: string;
-  compileType: 'css' | 'scss';
-  color?: colorUnit[];
-}
 
 export default {
   root: path.join(__dirname, '..', '..'),

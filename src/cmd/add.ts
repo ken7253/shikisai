@@ -1,11 +1,10 @@
 // modules
 import Message from '../modules/message';
-import Shikisai from '../modules/palette';
+import Shikisai, {Palette, ColorUnit} from '../modules/palette';
 import checkColorCode from '../modules/checkColorCode';
 import * as convert from 'color-convert';
 
 // types
-import {Palette, colorUnit} from '../modules/globals';
 import {HEX} from 'color-convert/conversions';
 
 /**
@@ -34,7 +33,7 @@ export default function add(colorName: string, colorCode: HEX) {
     // colorNameの重複がない場合
     const rgb = convert.hex.rgb(colorCode);
     const hsl = convert.hex.hsl(colorCode);
-    const newColorUnit: colorUnit = {
+    const newColorUnit: ColorUnit = {
       name: colorName,
       data: {
         hex: colorCode,
