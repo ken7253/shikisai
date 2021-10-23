@@ -3,8 +3,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 // local
-import common, {colorUnit, Palette} from '../modules/globals';
+import common, {Palette} from '../modules/globals';
 import Message from '../modules/message';
+import Compiler from '../modules/Compiler';
 
 /**
  * カラーパレットの情報を取り出す処理
@@ -22,35 +23,8 @@ const getPalette = (): Palette => {
   return palette;
 };
 
-type cssRuleset = string;
-type scssVariables = string;
-
 export default function () {
-  /**
-   * CSSへのコンパイル処理
-   * @param data コンパイルするカラーユニット
-   * @returns {cssRuleset} CSS変数の規則セット
-   */
-  const convertCss = (data: colorUnit[]): cssRuleset => {
-    const selector = ':root';
-    const property = data.map(unit => {
-      return `--c-${unit.name}: #${unit.data.hex};`;
-    });
-    return `${selector} {${property.join(' ')}}`;
-  };
-
-  /**
-   * Scssへのコンパイル処理
-   * @param data コンパイルするカラーユニット
-   * @returns {scssVariables} scssの変数セット
-   */
-  const convertScss = (data: colorUnit[]): scssVariables => {
-    const variables = data.map(unit => {
-      return `$c-${unit.name}: #${unit.data.hex};`;
-    });
-    return variables.join('\n');
-  };
-
+  const compiler = new Compiler();
   const palette = getPalette();
   const distDir = palette.dist;
   if (!palette.color) {
@@ -64,7 +38,7 @@ export default function () {
         });
         fs.writeFileSync(
           path.join(distDir, 'color.css'),
-          convertCss(palette.color)
+          compiler.css(palette.color)
         );
         new Message('complete', `build complete at ${distDir}color.css`);
         break;
@@ -73,7 +47,7 @@ export default function () {
         fs.mkdir(distDir, {recursive: true}, err => {
           if (err) throw err;
         });
-        fs.writeFileSync(distDir + '_color.scss', convertScss(palette.color));
+        fs.writeFileSync(distDir + '_color.scss', compiler.scss(palette.color));
         new Message('complete', `build complete at ${distDir}_color.scss`);
         break;
       default:
