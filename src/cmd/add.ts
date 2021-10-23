@@ -15,7 +15,6 @@ import {HEX} from 'color-convert/conversions';
 export default function add(colorName: string, colorCode: HEX) {
   const shikisai = new Shikisai();
   shikisai.edit((palette: Palette) => {
-    console.log(palette, colorCode);
     // 既にcolorNameと同じ名前が使用されていないか確認
     try {
       if (checkColorCode(colorCode)) {

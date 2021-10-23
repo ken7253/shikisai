@@ -26,9 +26,9 @@ export interface Palette {
 }
 
 export default class Shikisai {
-  private palette: Palette;
+  private palette: Palette | null;
   constructor() {
-    this.palette = this.read();
+    this.palette = null;
   }
   read(): Palette {
     new Message('running', 'loading colorPalette');
@@ -37,7 +37,11 @@ export default class Shikisai {
       {encoding: 'utf-8'}
     );
     this.palette = JSON.parse(readFile);
-    return this.palette;
+    if (this.palette) {
+      return this.palette;
+    } else {
+      throw new Error();
+    }
   }
   edit(func: (palette: Palette) => Palette): Palette {
     const afterEditPalette: Palette = func(this.read());
