@@ -1,11 +1,11 @@
 {
+  "exclude": ["./src", "./tests"],
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
-    "rootDir": "./src",
-    "outDir": "dist"
+    "outDir": "./dist"
   },
   "include": [
     "src/**/*.ts",
-    "test/**/*.ts"
+    "tests/**/*.ts"
   ]
 }
