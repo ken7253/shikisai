@@ -7,6 +7,8 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ken7253/shikisai?style=flat-square)
 ![GitHub Licence](https://img.shields.io/github/license/ken7253/shikisai?style=flat-square)
 
+[![CodeQL](https://github.com/ken7253/shikisai/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/ken7253/shikisai/actions/workflows/codeql-analysis.yml)
+
 ## Introduction
 
 "shikisai" is a package for centralized management of color information in front-end development.  
