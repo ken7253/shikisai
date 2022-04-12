@@ -1,7 +1,7 @@
 export type cssRuleset = string;
 export type scssVariables = string;
 
-import { ColorUnit } from './Palette';
+import { ColorUnit } from './palette';
 
 export default class Compiler {
   colorUnit?: ColorUnit[];

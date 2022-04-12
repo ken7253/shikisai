@@ -16,7 +16,7 @@
   "scripts": {
     "start": "watch",
     "watch": "tsc -w --inlineSources",
-    "build": "run-p gts:lint tsc:build",
+    "build": "run-p lint build:tsc",
     "lint": "run-s lint:*",
     "test": "jest",
     "build:tsc": "tsc",

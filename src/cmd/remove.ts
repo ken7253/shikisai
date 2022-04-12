@@ -1,6 +1,6 @@
 // modules
 import Message from '../modules/message';
-import Shikisai, { Palette } from '../modules/Palette';
+import Shikisai, { Palette } from '../modules/palette';
 
 /**
  * カラーパレットから色を取り除く処理
