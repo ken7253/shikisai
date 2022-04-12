@@ -20,7 +20,7 @@ export default function () {
     switch (palette.compileType) {
       case 'css':
         // cssの場合の処理
-        fs.mkdir(distDir, {recursive: true}, err => {
+        fs.mkdir(distDir, { recursive: true }, (err) => {
           if (err) throw err;
         });
         fs.writeFileSync(
@@ -31,7 +31,7 @@ export default function () {
         break;
       case 'scss':
         // scssの場合の処理
-        fs.mkdir(distDir, {recursive: true}, err => {
+        fs.mkdir(distDir, { recursive: true }, (err) => {
           if (err) throw err;
         });
         fs.writeFileSync(distDir + '_color.scss', compiler.scss(palette.color));

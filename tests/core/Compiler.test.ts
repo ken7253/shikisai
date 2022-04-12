@@ -1,5 +1,5 @@
 /* eslint-disable node/no-unpublished-import */
-import {ColorUnit} from '../../src/modules/Palette';
+import { ColorUnit } from '../../src/modules/Palette';
 import Compiler from '../../src/modules/Compiler';
 
 const compiler = new Compiler();

@@ -83,7 +83,7 @@ npm run shikisai add example-color #f00
 #### If you output as "css"
 
 For css output, colors are available as css variables.  
-Variable names will be prefixed with `c-`. It is followed by the color name specified by the `add` command.  
+Variable names will be prefixed with `c-`. It is followed by the color name specified by the `add` command.
 
 When to use
 
@@ -96,12 +96,12 @@ p {
 #### If you output as "scss"
 
 When outputting as scss, variables will be declared in scss format.  
-Variable names will be prefixed with `c-`. It is followed by the color name specified by the `add` command.  
+Variable names will be prefixed with `c-`. It is followed by the color name specified by the `add` command.
 
 When to use
 
 ```scss
-@use "./_color.scss" as color;
+@use './_color.scss' as color;
 
 p {
   color: color.$--c-example-color;

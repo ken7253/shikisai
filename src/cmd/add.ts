@@ -1,11 +1,11 @@
 // modules
 import Message from '../modules/message';
-import Shikisai, {Palette, ColorUnit} from '../modules/Palette';
+import Shikisai, { Palette, ColorUnit } from '../modules/Palette';
 import checkColorCode from '../modules/checkColorCode';
 import * as convert from 'color-convert';
 
 // types
-import {HEX} from 'color-convert/conversions';
+import { HEX } from 'color-convert/conversions';
 
 /**
  * カラーパレットに色を追加する処理
@@ -18,7 +18,7 @@ export default function add(colorName: string, colorCode: HEX) {
     // 既にcolorNameと同じ名前が使用されていないか確認
     try {
       if (checkColorCode(colorCode)) {
-        palette.color?.forEach(obj => {
+        palette.color?.forEach((obj) => {
           if (obj.name === colorName) {
             throw new Error(`"${colorName}" has already been used.`);
           }
