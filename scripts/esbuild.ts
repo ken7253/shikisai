@@ -9,7 +9,7 @@ const isWatch = args.includes('-w');
 /** 設定情報 */
 const config: esbuild.BuildOptions = {
   bundle: true,
-  entryPoints: ['src/index.ts'],
+  entryPoints: ['src/index.ts', 'src/view/main.tsx'],
   platform: 'node',
   outdir: './dist',
   outbase: 'src',
