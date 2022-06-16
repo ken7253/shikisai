@@ -7,7 +7,7 @@ import Message from './message';
 import common from './globals';
 
 // types
-import {HEX, HSL, RGB} from 'color-convert/conversions';
+import { HEX, HSL, RGB } from 'color-convert/conversions';
 
 export interface ColorUnit {
   name: string;
@@ -34,7 +34,7 @@ export default class Shikisai {
     new Message('running', 'loading colorPalette');
     const readFile = fs.readFileSync(
       path.join(process.cwd(), common.CONFIG_FILE_NAME),
-      {encoding: 'utf-8'}
+      { encoding: 'utf-8' }
     );
     this.palette = JSON.parse(readFile);
     if (this.palette) {

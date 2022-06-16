@@ -1,4 +1,4 @@
-import {HEX} from 'color-convert/conversions';
+import { HEX } from 'color-convert/conversions';
 
 /**
  * 入力された値がカラーコードとして有効か判定する関数

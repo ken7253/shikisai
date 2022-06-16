@@ -1,7 +1,7 @@
 export type cssRuleset = string;
 export type scssVariables = string;
 
-import {ColorUnit} from './Palette';
+import { ColorUnit } from './palette';
 
 export default class Compiler {
   colorUnit?: ColorUnit[];
@@ -14,7 +14,7 @@ export default class Compiler {
    */
   css(data: ColorUnit[]): cssRuleset {
     const selector = ':root';
-    const property = data.map(unit => {
+    const property = data.map((unit) => {
       return `--c-${unit.name}: #${unit.data.hex};`;
     });
     return `${selector} {${property.join(' ')}}`;
@@ -26,7 +26,7 @@ export default class Compiler {
    * @returns scssの変数セット
    */
   scss(data: ColorUnit[]): scssVariables {
-    const variables = data.map(unit => {
+    const variables = data.map((unit) => {
       return `$c-${unit.name}: #${unit.data.hex};`;
     });
     return variables.join('\n');
