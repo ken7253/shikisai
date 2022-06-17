@@ -48,8 +48,10 @@ const watchLog = () => {
 void (async () => {
   await esbuild.build(config).then((result) => {
     if (isWatch) {
+      process.env.NODE_ENV = 'develop';
       watchLog();
     } else {
+      process.env.NODE_ENV = 'production';
       buildLog(result);
     }
   });
