@@ -16,6 +16,8 @@ const config: esbuild.BuildOptions = {
   minify: !isWatch,
   watch: isWatch,
   sourcemap: isWatch ? 'inline' : 'linked',
+  color: true,
+  legalComments: isWatch ? 'inline' : 'linked',
 };
 
 /** build時のログを表示する関数 */
