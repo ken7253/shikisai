@@ -16,7 +16,7 @@
   "scripts": {
     "start": "run-s clear watch",
     "watch": "run-p watch:*",
-    "watch:asset": "cpx static/view dist/view -w",
+    "watch:asset": "cpx static/view/** dist/view -w",
     "watch:ts": "node --loader ts-node/esm scripts/esbuild.ts -w",
     "build": "run-p build:*",
     "build:asset": "cpx static/view/** dist/view",
@@ -67,6 +67,7 @@
     "color-convert": "^2.0.1",
     "inquirer": "^8.2.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "serve": "^13.0.2"
   }
 }
