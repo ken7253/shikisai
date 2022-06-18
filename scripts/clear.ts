@@ -6,7 +6,7 @@ const config = {
 };
 
 (() => {
-  console.log("[remove]");
+  console.log('[remove]');
   config.include.forEach((dir) => {
     const targetDir = path.join(process.cwd(), dir);
     try {

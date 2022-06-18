@@ -11,20 +11,22 @@ const commonBuildConfig: esbuild.BuildOptions = {
   outdir: './dist',
   outbase: 'src',
   minify: !isWatch,
-  watch: isWatch ? {
-    onRebuild(error, result) {
-      if (error) {
-        console.log(addPrefix('build failed'));
-        console.log(error.message);
-      } else {
-        if (result) buildLog(result);
+  watch: isWatch
+    ? {
+        onRebuild(error, result) {
+          if (error) {
+            console.log(addPrefix('build failed'));
+            console.log(error.message);
+          } else {
+            if (result) buildLog(result);
+          }
+        },
       }
-    }
-  } : false,
+    : false,
   sourcemap: isWatch ? 'inline' : 'linked',
   color: true,
   legalComments: isWatch ? 'inline' : 'linked',
-}
+};
 
 const nodeBuildConfig: esbuild.BuildOptions = {
   ...commonBuildConfig,
@@ -39,12 +41,12 @@ const browserBuildConfig: esbuild.BuildOptions = {
   platform: 'browser',
   jsxFactory: 'jsx',
   define: { 'process.env.NODE_ENV': process.env.NODE_ENV! },
-}
+};
 
-const addPrefix = (text: string):string => {
+const addPrefix = (text: string): string => {
   const prefix = '[ esbuild ]';
   return `\x1b[37m\x1b[43m${prefix}\x1b[0m ${text}`;
-}
+};
 
 /** build時のログを表示する関数 */
 const buildLog = (result: esbuild.BuildResult) => {
@@ -66,13 +68,13 @@ const buildLog = (result: esbuild.BuildResult) => {
   }
 };
 
-const resultLogger = (result:esbuild.BuildResult) => {
+const resultLogger = (result: esbuild.BuildResult) => {
   if (isWatch) {
     console.log(addPrefix('start watching...'));
   } else {
     buildLog(result);
   }
-}
+};
 
 void (async () => {
   process.env.NODE_ENV = isWatch ? 'development' : 'production';
@@ -84,5 +86,5 @@ void (async () => {
 
   await esbuild.build(browserBuildConfig).then((result) => {
     resultLogger(result);
-  })
+  });
 })();
