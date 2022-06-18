@@ -14,7 +14,8 @@
     "shikisai": "./dist/index.js"
   },
   "scripts": {
-    "start": "run-s clear watch",
+    "start": "run-p watch serve",
+    "serve": "node --loader ts-node/esm src/server/index.ts",
     "watch": "run-p watch:*",
     "watch:asset": "cpx static/view/** dist/view -w",
     "watch:ts": "node --loader ts-node/esm scripts/esbuild.ts -w",

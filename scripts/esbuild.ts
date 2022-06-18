@@ -39,7 +39,6 @@ const browserBuildConfig: esbuild.BuildOptions = {
   entryPoints: ['src/view/main.tsx'],
   target: 'es2020',
   platform: 'browser',
-  jsxFactory: 'jsx',
   define: { 'process.env.NODE_ENV': process.env.NODE_ENV! },
 };
 
