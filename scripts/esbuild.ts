@@ -38,6 +38,7 @@ const browserBuildConfig: esbuild.BuildOptions = {
   target: 'es2020',
   platform: 'browser',
   jsxFactory: 'jsx',
+  define: { 'process.env.NODE_ENV': process.env.NODE_ENV! },
   inject: [path.join('src', 'view', 'emotion-shim.ts')],
 }
 
