@@ -1,4 +1,5 @@
 import esbuild from 'esbuild';
+import path from 'path';
 
 /** コマンドライン引数 */
 const args: string[] = [...process.argv].slice(2);
@@ -10,7 +11,16 @@ const commonBuildConfig: esbuild.BuildOptions = {
   outdir: './dist',
   outbase: 'src',
   minify: !isWatch,
-  watch: isWatch,
+  watch: isWatch ? {
+    onRebuild(error, result) {
+      if (error) {
+        console.log(addPrefix('build failed'));
+        console.log(error.message);
+      } else {
+        if (result) buildLog(result);
+      }
+    }
+  } : false,
   sourcemap: isWatch ? 'inline' : 'linked',
   color: true,
   legalComments: isWatch ? 'inline' : 'linked',
@@ -25,7 +35,15 @@ const nodeBuildConfig: esbuild.BuildOptions = {
 const browserBuildConfig: esbuild.BuildOptions = {
   ...commonBuildConfig,
   entryPoints: ['src/view/main.tsx'],
-  platform: 'node',
+  target: 'es2020',
+  platform: 'browser',
+  jsxFactory: 'jsx',
+  inject: [path.join('src', 'view', 'emotion-shim.ts')],
+}
+
+const addPrefix = (text: string):string => {
+  const prefix = '[ esbuild ]';
+  return `\x1b[37m\x1b[43m${prefix}\x1b[0m ${text}`;
 }
 
 /** build時のログを表示する関数 */
@@ -33,39 +51,33 @@ const buildLog = (result: esbuild.BuildResult) => {
   // エラー表示
   if (result.errors.length !== 0) {
     result.errors.forEach((error) => {
-      console.log(error.text);
+      console.log(addPrefix(error.text));
     });
   }
   // 警告表示
   if (result.warnings.length !== 0) {
     result.warnings.forEach((message) => {
-      console.log(message.text);
+      console.log(addPrefix(message.text));
     });
   }
   // エラーと警告がなければ完了表示
   if (result.warnings.length === 0 && result.errors.length === 0) {
-    console.log('complete!');
-    console.timeEnd('time');
+    console.log(addPrefix('complete!'));
   }
-};
-
-/** watch時のログ表示 */
-const watchLog = () => {
-  console.timeEnd('time');
-  console.log('Watching files...');
 };
 
 const resultLogger = (result:esbuild.BuildResult) => {
   if (isWatch) {
-    process.env.NODE_ENV = 'develop';
-    watchLog();
+    console.log(addPrefix('start watching...'));
   } else {
-    process.env.NODE_ENV = 'production';
     buildLog(result);
   }
 }
 
 void (async () => {
+  process.env.NODE_ENV = isWatch ? 'development' : 'production';
+  console.log(addPrefix(`${process.env.NODE_ENV} mode`));
+
   await esbuild.build(nodeBuildConfig).then((result) => {
     resultLogger(result);
   });
