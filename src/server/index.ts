@@ -1,9 +1,10 @@
 import handler from 'serve-handler';
 import http from 'http';
+import path from 'path';
 
 const server = http.createServer((request, response) => {
   return handler(request, response, {
-    public: 'dist/view/',
+    public: path.join('dist', 'view'),
   });
 });
 
