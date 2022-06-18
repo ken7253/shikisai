@@ -1,9 +1,12 @@
 import React from "react";
+import {Header, Footer} from './components';
 
 const App: React.FC = () => {
   return(
     <>
-      <h1>テスト</h1>
+      <Header />
+      <p>テスト</p>
+      <Footer />
     </>
   )
 }
