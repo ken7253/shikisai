@@ -1,16 +1,12 @@
 import esbuild from 'esbuild';
 
-console.time('time');
-
 /** コマンドライン引数 */
 const args: string[] = [...process.argv].slice(2);
 const isWatch = args.includes('-w');
 
 /** 設定情報 */
-const config: esbuild.BuildOptions = {
+const commonBuildConfig: esbuild.BuildOptions = {
   bundle: true,
-  entryPoints: ['src/index.ts', 'src/view/main.tsx', 'src/server/index.ts'],
-  platform: 'node',
   outdir: './dist',
   outbase: 'src',
   minify: !isWatch,
@@ -18,7 +14,19 @@ const config: esbuild.BuildOptions = {
   sourcemap: isWatch ? 'inline' : 'linked',
   color: true,
   legalComments: isWatch ? 'inline' : 'linked',
+}
+
+const nodeBuildConfig: esbuild.BuildOptions = {
+  ...commonBuildConfig,
+  entryPoints: ['src/index.ts', 'src/server/index.ts'],
+  platform: 'node',
 };
+
+const browserBuildConfig: esbuild.BuildOptions = {
+  ...commonBuildConfig,
+  entryPoints: ['src/view/main.tsx'],
+  platform: 'node',
+}
 
 /** build時のログを表示する関数 */
 const buildLog = (result: esbuild.BuildResult) => {
@@ -47,14 +55,22 @@ const watchLog = () => {
   console.log('Watching files...');
 };
 
+const resultLogger = (result:esbuild.BuildResult) => {
+  if (isWatch) {
+    process.env.NODE_ENV = 'develop';
+    watchLog();
+  } else {
+    process.env.NODE_ENV = 'production';
+    buildLog(result);
+  }
+}
+
 void (async () => {
-  await esbuild.build(config).then((result) => {
-    if (isWatch) {
-      process.env.NODE_ENV = 'develop';
-      watchLog();
-    } else {
-      process.env.NODE_ENV = 'production';
-      buildLog(result);
-    }
+  await esbuild.build(nodeBuildConfig).then((result) => {
+    resultLogger(result);
   });
+
+  await esbuild.build(browserBuildConfig).then((result) => {
+    resultLogger(result);
+  })
 })();
