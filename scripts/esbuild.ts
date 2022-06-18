@@ -39,7 +39,6 @@ const browserBuildConfig: esbuild.BuildOptions = {
   platform: 'browser',
   jsxFactory: 'jsx',
   define: { 'process.env.NODE_ENV': process.env.NODE_ENV! },
-  inject: [path.join('src', 'view', 'emotion-shim.ts')],
 }
 
 const addPrefix = (text: string):string => {
