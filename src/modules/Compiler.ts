@@ -5,7 +5,6 @@ import { ColorUnit } from './palette';
 
 export default class Compiler {
   colorUnit?: ColorUnit[];
-  constructor() {}
 
   /**
    * CSSへのコンパイル処理

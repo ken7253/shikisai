@@ -2,6 +2,7 @@ import React from 'react';
 import { Header, Footer } from './components';
 
 const App: React.FC = () => {
+
   return (
     <>
       <Header />
