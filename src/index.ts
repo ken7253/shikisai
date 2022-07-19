@@ -24,9 +24,16 @@ cli
   .action((colorName: string) => {
     cmd.remove(colorName);
   });
+
 cli.command('build').action(() => {
   cmd.build();
 });
+
+// 色の管理ツールを起動する
+cli.command('check', 'Launch the color checker').action(() => {
+  cmd.check();
+});
+
 cli.help();
 cli.version(common.PACKAGE_VERSION);
 cli.parse();
